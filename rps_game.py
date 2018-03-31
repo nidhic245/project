@@ -23,11 +23,11 @@ def getComputerChoice():
 
 def playGame():
     print('##############################################')
-    print('       Rock, Paper, Sissors Game!!!')
+    print('       Rock, Paper, Scissors Game!!!')
     print('##############################################')
 
     abvToFullName = {'r': 'Rock', 'p' : 'Paper', 's': 'Scissors'}
-    gameScore = {'Total Games' : 0, 'User Wins':0, 'Computer Wins': 0, 'Draws': 0}
+    totalGames, userWins, computerWins, drawCount = 0, 0, 0, 0
 
     while(1):
         userChoice = getUserChoice()
@@ -36,37 +36,32 @@ def playGame():
         computerChoice = getComputerChoice()
         print('Computer entered: ' + abvToFullName.get(computerChoice))
 
-        drawCount = gameScore['Draws']
-        userWins = gameScore['User Wins']
-        computerWins = gameScore['Computer Wins']
-
         if userChoice == computerChoice:
             print('Draw')
-            gameScore['Draws'] = drawCount + 1
+            drawCount = drawCount + 1
         elif userChoice == 'r':
             if computerChoice == 'p':
                 print('Computer wins: ' + abvToFullName.get(computerChoice) + ' wraps ' + abvToFullName.get(userChoice))
-                gameScore['Computer Wins'] = computerWins + 1
+                computerWins = computerWins + 1
             else:
                 print('User wins: '+ abvToFullName.get(userChoice)+ ' breaks '+ abvToFullName.get(computerChoice))
-                gameScore['User Wins'] = userWins + 1
+                userWins = userWins + 1
         elif userChoice == 'p':
             if computerChoice == 'r':
                 print('User wins: '+ abvToFullName.get(userChoice)+ ' wraps '+ abvToFullName.get(computerChoice))
-                gameScore['User Wins'] = userWins + 1
+                userWins = userWins + 1
             else:
                 print('Computer wins: '+ abvToFullName.get(computerChoice)+ ' cut '+ abvToFullName.get(userChoice))
-                gameScore['Computer Wins'] = computerWins + 1
+                computerWins = computerWins + 1
         elif userChoice == 's':
             if computerChoice == 'r':
                 print('Computer wins: '+ abvToFullName.get(computerChoice)+ ' breaks '+ abvToFullName.get(userChoice))
-                gameScore['Computer Wins'] = computerWins + 1
+                computerWins = computerWins + 1
             else:
                 print('User wins: '+ abvToFullName.get(userChoice)+ ' cut '+ abvToFullName.get(computerChoice))
-                gameScore['User Wins'] = userWins + 1
+                userWins = userWins + 1
 
-        totalGames = gameScore['Total Games']
-        gameScore['Total Games'] = totalGames + 1
+        totalGames = totalGames + 1
 
         checkToContinue = raw_input('Do you want to continue playing (use y for Yes, n for No: ')
         if checkToContinue == 'y':
@@ -75,10 +70,10 @@ def playGame():
             break
 
     # print final score
-    print('Total Games played: '+ str(gameScore['Total Games']))
-    print('User Wins: '+ str(gameScore['User Wins']))
-    print('Computer Wins: '+ str(gameScore['Computer Wins']))
-    print('Draws: '+ str(gameScore['Draws']))
+    print('Total Games played: '+ str(totalGames))
+    print('User Wins: '+ str(userWins))
+    print('Computer Wins: '+ str(computerWins))
+    print('Draws: '+ str(drawCount))
 
 def main():
     playGame()
